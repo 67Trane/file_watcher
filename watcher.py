@@ -12,7 +12,7 @@ from watchdog.observers import Observer
 # Configuration
 # -----------------------------
 
-WATCH_PATH = Path(r"C:\Users\67Trane\epson-test\test-runs\scanner-outbox")
+WATCH_PATH = Path(r"/Kunden/inbox")
 BACKEND_URL = "http://localhost:8000/api/import-document-from-pdf/"
 
 # NOTE: In real usage, keep this in an environment variable (not in source code).
