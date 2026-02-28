@@ -13,7 +13,7 @@ from watchdog.observers import Observer
 # -----------------------------
 
 WATCH_PATH = Path(r"/Kunden/inbox")
-BACKEND_URL = "http://localhost:8000/api/import-document-from-pdf/"
+BACKEND_URL = "http://backend:8000/api/import-document-from-pdf/"
 
 # NOTE: In real usage, keep this in an environment variable (not in source code).
 IMPORT_TOKEN = "BAdd8oLgHOrs7UzBc2l73x6skt6EcICS"
