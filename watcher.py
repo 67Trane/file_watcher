@@ -12,8 +12,8 @@ from watchdog.observers import Observer
 # Configuration
 # -----------------------------
 
-WATCH_PATH = Path(r"C:\Users\67Trane\epson-test\test-runs\scanner-outbox")
-BACKEND_URL = "http://localhost:8000/api/import-document-from-pdf/"
+WATCH_PATH = Path(r"/Kunden/inbox")
+BACKEND_URL = "http://backend:8000/api/import-document-from-pdf/"
 
 # NOTE: In real usage, keep this in an environment variable (not in source code).
 IMPORT_TOKEN = "BAdd8oLgHOrs7UzBc2l73x6skt6EcICS"
@@ -94,7 +94,14 @@ class ScanHandler(FileSystemEventHandler):
         for fp in expired:
             self.recent.pop(fp, None)
 
+    def on_modified(self, event) -> None:
+        # Beim Kopieren über Netzwerk (SMB/NFS) wird oft on_modified statt on_created gefeuert
+        self._handle(event)
+
     def on_created(self, event) -> None:
+        self._handle(event)
+
+    def _handle(self, event) -> None:
         # -----------------------------
         # Guard clauses (skip conditions)
         # -----------------------------
